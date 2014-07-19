@@ -69,8 +69,8 @@ void initialize(uint8_t addr) {
     TMR1H = 0; // reset timer1 High
     TMR1L = 0; // and Low bytes - prescaler automatic reset
     
-    CCP1CON = 0b00001011; // set up capture and compare
-              //----1011  Special trigger event. Set CCP1IF and reset Timer1
+    CCP1CON = 0b00000010; // set up capture and compare
+              //----0010  Toggle CCP1 pin. Set CCP1IF (TODO check if CCP1IF is set)
 
     // set ccp1 register to the highest value to avoid useless interrupt
     CCPR1H = 0xFF;
@@ -82,7 +82,7 @@ void initialize(uint8_t addr) {
     PIR1bits.TMR1IF = 0;
     PIR1bits.CCP1IF = 0;
     //activate interrupt bits
-    PIE1bits.CCP1IE = 1;
+    PIE1bits.CCP1IE = 0; // disable interrupt on CCP1 will be check by polling
     PIE1bits.SSP1IE = 1;
     INTCONbits.PEIE = 0;
     INTCONbits.GIE = 0;

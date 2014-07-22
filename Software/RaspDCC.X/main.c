@@ -33,7 +33,7 @@
 #define DCC_RUN_LSB_HI  100
 #define DCC_RUN_MSB 0
 
-// simy wave of 1ms (500us = 0h01f4)
+// semi wave of 0.5ms (500us = 0h01f4)
 // if timer 1 tick = 1us
 #define DCC_PAUSE_MSB 0x01
 #define DCC_PAUSE_LSB 0xf4
@@ -71,6 +71,8 @@ int main(void) {
     //reset Timer1 - NOW COUNTING STARTS
     TMR1H = 0;
     TMR1L = 0;
+
+    // TODO force an inversion of DCC_TRACK_COMMAND_WRITE
 
     //clear CCP1 interrupt flag
     PIR1bits.CCP1IF = 0;

@@ -26,7 +26,7 @@ extern "C" {
 void initialize(uint8_t addr) {
 
     // uC set up
-    OSCCON = 0b01111000; // Configure oscillator
+    OSCCON = 0b11111000; // Configure oscillator
              //1-------     use PLL to get 32Mhz (system clock)
              //-1110---     8 MHz internal oscillator (insctruction clock)
              //------00     Oscillator selected with FOSC
@@ -84,8 +84,8 @@ void initialize(uint8_t addr) {
     //activate interrupt bits
     PIE1bits.CCP1IE = 0; // disable interrupt on CCP1 will be check by polling
     PIE1bits.SSP1IE = 1;
-    INTCONbits.PEIE = 0;
-    INTCONbits.GIE = 0;
+    INTCONbits.PEIE = 1;
+    INTCONbits.GIE = 1;
 
 }
 
